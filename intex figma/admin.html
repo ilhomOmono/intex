@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <style type="text/tailwindcss">
+        @layer utilities {
+          .content-auto {
+            content-visibility: auto;
+          }
+        }
+      </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Sidebar -->
+  <div class="flex">
+      <nav class="w-64 bg-white h-screen shadow-lg">
+          <div class="p-6">
+              <h2 class="text-2xl font-semibold text-teal-600">INTEX-MARKET.UZ</h2>
+          </div>
+          <ul class="space-y-4 px-6">
+              <li><a href="#" class="text-lg text-gray-700 hover:text-teal-500">Продукты</a></li>
+              <li><a href="#" class="text-lg text-gray-700 hover:text-teal-500">Заказы</a></li>
+              <li><a href="#" class="text-lg text-gray-700 hover:text-teal-500">Категории</a></li>
+              <li><a href="#" class="text-lg text-gray-700 hover:text-teal-500">Сайт</a></li>
+          </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <div class="flex-1 p-6">
+          <!-- Header -->
+          <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-semibold">Продукты</h2>
+              <button id="addProductBtn" class="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600">+ Добавить продукт</button>
+          </div>
+
+          <!-- Product Search -->
+          <div class="flex items-center mb-6">
+              <input type="text" placeholder="Найти" class="w-full p-2 border border-gray-300 rounded-lg">
+              <button class="bg-teal-500 text-white p-2 ml-2 rounded-lg hover:bg-teal-600">🔍</button>
+          </div>
+
+          <!-- Product Table -->
+          <div class="bg-white shadow-md rounded-lg overflow-hidden">
+              <table class="min-w-full text-left border-collapse">
+                  <thead>
+                      <tr class="bg-gray-100">
+                          <th class="py-3 px-6">Изображение</th>
+                          <th class="py-3 px-6">Цена(сум)</th>
+                          <th class="py-3 px-6">Количество</th>
+                          <th class="py-3 px-6">Рамка</th>
+                          <th class="py-3 px-6">Размер(м)</th>
+                          <th class="py-3 px-6">Глубина(см)</th>
+                          <th class="py-3 px-6">Действия</th>
+                      </tr>
+                  </thead>
+                  <tbody id="productTable" class="text-sm">
+                      <!-- Mahsulotlar qo'shiladi -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+
+  <!-- Modal oyna (Mahsulot qo'shish) -->
+  <div id="productModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+      <div class="bg-white w-full max-w-2xl p-8 rounded-lg shadow-lg">
+          <div class="flex justify-between items-center mb-4">
+              <h3 class="text-2xl font-semibold">Добавить продукт</h3>
+              <button id="closeModal" class="text-gray-500 text-2xl">&times;</button>
+          </div>
+          <form id="productForm" class="grid grid-cols-2 gap-4">
+              <div class="col-span-2">
+                  <label class="block text-sm font-medium mb-1">Изображение</label>
+                  <div class="border border-dashed border-gray-300 rounded-lg p-4 flex items-center justify-center">
+                      <input type="file" class="hidden" id="productImage">
+                      <label for="productImage" class="cursor-pointer text-teal-500">Выберите изображение</label>
+                  </div>
+              </div>
+
+              <div>
+                  <label class="block text-sm font-medium mb-1">Название продукта</label>
+                  <input type="text" id="productName" class="w-full p-2 border border-gray-300 rounded-md" required>
+              </div>
+              <div>
+                  <label class="block text-sm font-medium mb-1">Цена (сум)</label>
+                  <input type="number" id="productPrice" class="w-full p-2 border border-gray-300 rounded-md" required>
+              </div>
+              <div>
+                  <label class="block text-sm font-medium mb-1">Количество</label>
+                  <input type="number" id="productQuantity" class="w-full p-2 border border-gray-300 rounded-md" required>
+              </div>
+              <div>
+                  <label class="block text-sm font-medium mb-1">Рамка</label>
+                  <select id="productFrame" class="w-full p-2 border border-gray-300 rounded-md">
+                      <option>Металлический</option>
+                      <option>Пластиковый</option>
+                  </select>
+              </div>
+              <div>
+                  <label class="block text-sm font-medium mb-1">Размер(м)</label>
+                  <input type="number" id="productSize" class="w-full p-2 border border-gray-300 rounded-md" required>
+              </div>
+              <div>
+                  <label class="block text-sm font-medium mb-1">Глубина(см)</label>
+                  <input type="number" id="productDepth" class="w-full p-2 border border-gray-300 rounded-md" required>
+              </div>
+              <div class="col-span-2 flex justify-end">
+                  <button type="submit" class="bg-teal-500 text-white py-2 px-6 rounded-lg">Добавить</button>
+              </div>
+          </form>
+      </div>
+  </div>
+    
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+      <script src="./js/Admin/admin.js"></script>
+</body>
+</html>
